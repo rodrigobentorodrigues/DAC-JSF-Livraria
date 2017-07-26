@@ -16,10 +16,10 @@
             <h:outputText value="Email"/>
             <h:inputText value="#{controladorAutor.a.email}"
                          required="true"
-                         requiredMessage="Voce deve informar seu email"
-                         rendered="#{not controladorAutor.editar}"/>
+                         requiredMessage="Voce deve informar seu email"/>
             <br></br>
-            <h:outputText value="CPF"/>            
+            <h:outputText value="CPF"
+                          rendered="#{not controladorAutor.editar}"/>            
             <h:inputText value="#{controladorAutor.a.cpf}" 
                          converter="conversorCPF"
                          required="true"
