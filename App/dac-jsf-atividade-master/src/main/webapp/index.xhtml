@@ -1,22 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Atividade JSF - Local</title>
+        <title>CRUD Autor</title>
     </h:head>
     <h:body>
         <h:form>
             <h:outputText value="Nome"/>
-            <h:inputText value="#{controladorAutor.nome}" required="true"/>
+            <h:inputText value="#{controladorAutor.a.nome}"
+                         required="true"
+                         requiredMessage="Voce deve informar seu nome"/>
             <br></br>
             <h:outputText value="Email"/>
-            <h:inputText value="#{controladorAutor.email}" required="true"/>
+            <h:inputText value="#{controladorAutor.a.email}"
+                         required="true"
+                         requiredMessage="Voce deve informar seu email"
+                         rendered="#{not controladorAutor.editar}"/>
             <br></br>
-            <h:outputText value="CPF"/>
-            <h:inputText value="#{controladorAutor.cpf}" required="true" converter="conversorCPF"/>
+            <h:outputText value="CPF"/>            
+            <h:inputText value="#{controladorAutor.a.cpf}" 
+                         converter="conversorCPF"
+                         required="true"
+                         requiredMessage="Voce deve informar seu CPF"
+                         rendered="#{not controladorAutor.editar}"/>
             <br></br>
-            <h:commandButton action="#{controladorAutor.adicionarAutor()}" value="Adicionar botão"/>
+            <h:commandButton value="Salvar" 
+                             action="#{controladorAutor.adicionarAutor()}"
+                             rendered="#{not controladorAutor.editar}"/>
+                <h:commandButton value="Atualizar" 
+                                 action="#{controladorAutor.atualizarAutor()}" 
+                                 rendered="#{controladorAutor.editar}"/>
+            
+        </h:form>
+        <h:form>
+            <h:dataTable value="#{controladorAutor.autores}" var="autor">
+                
+                <h:column>
+                    <f:facet name="header"><b>Nome</b></f:facet>
+                    <h:outputText value="#{autor.nome}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><b>Email</b></f:facet>
+                    <h:outputText value="#{autor.email}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><b>CPF</b></f:facet>
+                    <h:outputText value="#{autor.cpf.valor}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><b>Excluir</b></f:facet>
+                    <h:commandButton value="Excluir" 
+                                     action="#{controladorAutor.removerAutor(autor)}"/> 
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><b>Editar</b></f:facet>
+                    <h:commandButton value="Editar" 
+                                     rendered="#{not controladorAutor.editar}"
+                                     action="#{controladorAutor.editarAutor(autor)}"/> 
+                </h:column>
+                
+            </h:dataTable>
+            
         </h:form>
     </h:body>
 </html>

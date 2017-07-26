@@ -58,12 +58,12 @@ public class AutorDAO implements Dao<Autor>{
     public boolean atualizar(Autor a) {
         try {
             this.con = ConFactory.getConnection();
-            String sql = "UPDATE autor SET cpf = ?, nome = ?, email = ? WHERE cpf = ?";
+            String sql = "UPDATE autor SET nome = ?, email = ? WHERE cpf = ?";
+            System.out.println(sql);
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, a.getCpf().getValor());
-            stmt.setString(2, a.getNome());
-            stmt.setString(3, a.getEmail());
-            stmt.setString(4, a.getCpf().getValor());
+            stmt.setString(1, a.getNome());
+            stmt.setString(2, a.getEmail());
+            stmt.setString(3, a.getCpf().getValor());
             int n = stmt.executeUpdate();
             stmt.close();
             this.con.close();
