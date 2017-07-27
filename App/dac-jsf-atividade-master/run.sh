@@ -4,4 +4,4 @@ sudo docker rmi atividade/web
 mvn clean install
 sudo docker build -t atividade/web .
 sudo docker run -p 8081:8080 -d --name web --link banco:host-banco atividade/web
-
+sudo docker logs web

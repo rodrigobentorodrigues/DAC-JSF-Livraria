@@ -3,13 +3,14 @@ package ifpb.ads.controladores;
 
 import ifpb.ads.autor.Autor;
 import ifpb.ads.servicos.ServicoAutor;
+import java.io.Serializable;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
-@ManagedBean(eager=true)
+@Named
 @SessionScoped
-public class ControladorAutor {
+public class ControladorAutor implements Serializable{
     
     private Autor a = new Autor();
     private ServicoAutor servico = new ServicoAutor();
@@ -24,7 +25,7 @@ public class ControladorAutor {
     }
     
     public List<Autor> getAutores() {
-        return servico.todosAutores();
+        return this.servico.todosAutores();
     }
 
     public boolean isEditar() {
@@ -36,26 +37,26 @@ public class ControladorAutor {
     }
     
     public String adicionarAutor(){
-        servico.adicionar(a);
-        a = new Autor();
+        this.servico.adicionar(a);
+        this.a = new Autor();
         return null;
     }
     
     public String atualizarAutor(){
-        servico.atualizar(a);
-        a = new Autor();
-        setEditar(false);
+        this.servico.atualizar(a);
+        this.a = new Autor();
+        this.setEditar(false);
         return null;
     }
 
     public String removerAutor(Autor autor){
-        servico.remover(autor);
+        this.servico.remover(autor);
         return null;
     }
     
     public String editarAutor(Autor autor){
-        a = autor;
-        setEditar(true);
+        this.a = autor;
+        this.setEditar(true);
         return null;
     } 
     

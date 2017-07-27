@@ -1,16 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de livro</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+    </h:head>
+    <h:body>
+        <h:form rendered="#{not empty controladorLivro.autores}">
+            <h1>Cadastro de livro</h1>
+            <h:outputText value="ISBN"/>
+            <h:inputText value="#{controladorLivro.livro.ISBN}" 
+                         required="true"
+                         requiredMessage="Necessário informar o ISBN" />
+            <br></br>
+            <h:outputText value="Descrição"/>
+            <h:inputText value="#{controladorLivro.livro.descricao}" 
+                         required="true"
+                         requiredMessage="Necessário informar a descrição" />
+            <br></br>
+            <h:outputText value="Editora"/>
+            <h:inputText value="#{controladorLivro.livro.edicao}" 
+                         required="true"
+                         requiredMessage="Necessário informar a editora do livro" />
+            <br></br>
+            <h:commandButton value="Adicionar autores" 
+                             immediate="true"
+                             rendered="#{controladorLivro.mostrarTodosAutores}"
+                             action="#{controladorLivro.mostrarAutores()}"/>
+            <br></br>
+            <h:outputText value="Autores"/>
+            <h:dataTable value="#{controladorLivro.autores}" var="a" 
+                         rendered="#{controladorLivro.mostrarTodosAutores}">
+                <h:column>
+                    <h:outputText value="#{a.nome}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:dataTable value="#{controladorLivro.autoresAuxiliar}" 
+                         rendered="#{not controladorLivro.mostrarTodosAutores}"
+                         var="a">
+                <h:column>
+                    <h:outputText value="#{a.nome}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Salvar" 
+                                     immediate="true"
+                                     action="#{controladorLivro.adicionarAutor(a)}">
+                        <!--<f:ajax render="@dataTable :tabela" />-->
+                    </h:commandButton>
+                </h:column>            
+            </h:dataTable>
+
+            <h:commandButton value="Cadastrar livro" 
+                             action="#{controladorLivro.cadastrarLivro()}"/>
+        </h:form>
+        <h:outputText rendered="#{empty controladorLivro.autores}" value="Adicione um autor para poder cadastrar um livro"/>
+    </h:body>
 </html>
+

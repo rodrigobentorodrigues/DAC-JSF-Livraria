@@ -29,14 +29,14 @@
             <h:commandButton value="Salvar" 
                              action="#{controladorAutor.adicionarAutor()}"
                              rendered="#{not controladorAutor.editar}"/>
-                <h:commandButton value="Atualizar" 
-                                 action="#{controladorAutor.atualizarAutor()}" 
-                                 rendered="#{controladorAutor.editar}"/>
-            
+            <h:commandButton value="Atualizar" 
+                             action="#{controladorAutor.atualizarAutor()}" 
+                             rendered="#{controladorAutor.editar}"/>
+
         </h:form>
         <h:form>
             <h:dataTable value="#{controladorAutor.autores}" var="autor">
-                
+
                 <h:column>
                     <f:facet name="header"><b>Nome</b></f:facet>
                     <h:outputText value="#{autor.nome}"/>
@@ -60,10 +60,12 @@
                                      rendered="#{not controladorAutor.editar}"
                                      action="#{controladorAutor.editarAutor(autor)}"/> 
                 </h:column>
-                
+
             </h:dataTable>
-            
+
         </h:form>
+        <br />
+        <h:link outcome="cadastrolivro.xhtml" value="Ir para cadastro de livros" />
     </h:body>
 </html>
 

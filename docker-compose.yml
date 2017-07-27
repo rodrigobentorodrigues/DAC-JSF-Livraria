@@ -1,0 +1,21 @@
+version: '2.1'
+services:
+    web:
+        build: ./App/dac-jsf-atividade-master/
+        image: atividade/web
+        container_name: web
+        ports:
+          - "8081:8080"
+        depends_on:
+            banco:
+                condition: service_healthy
+        links:
+            - "banco:host-banco"
+    banco:
+        build: ./Postgres
+        image: atividade/banco
+        container_name: banco
+        ports:
+            - "5433:5432"
+        healthcheck:
+            test: "exit 0"

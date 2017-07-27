@@ -54,4 +54,9 @@ public class Livro {
         this.autores.remove(autor);
     }
 
+    @Override
+    public String toString() {
+        return "Livro{" + "descricao=" + descricao + ", ISBN=" + ISBN + ", edicao=" + edicao + ", autores=" + autores + '}';
+    }
+
 }
