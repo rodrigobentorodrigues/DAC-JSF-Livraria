@@ -3,14 +3,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Cadastro de livro</title>
+        <title>CRUD de livro</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        <h:form rendered="#{not empty controladorLivro.autores}">
+        <h:form rendered="#{not empty controladorLivro.autores}" id="cadastro">
             <h1>Cadastro de livro</h1>
             <h:outputText value="ISBN"/>
             <h:inputText value="#{controladorLivro.livro.ISBN}" 
@@ -56,8 +55,34 @@
             </h:dataTable>
 
             <h:commandButton value="Cadastrar livro" 
+                             rendered="#{controladorLivro.autorCadastrado}"
                              action="#{controladorLivro.cadastrarLivro()}"/>
+
+            <hr></hr>
+            <br></br>
+
+            <h:dataTable value="#{controladorLivro.todosLivros}"
+                         var="livro">
+                
+                <h:column>
+                    <f:facet name="header"><b>ISBN</b></f:facet>
+                    <h:outputText value="#{livro.ISBN}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><b>Descricao</b></f:facet>
+                    <h:outputText value="#{livro.descricao}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><b>Excluir</b></f:facet>
+                    <h:commandButton immediate="true"
+                                     value="Excluir livro" 
+                                     action="#{controladorLivro.removerLivro(livro)}"/>
+                </h:column>
+            </h:dataTable>
         </h:form>
+        <!--        <h:form id="livros">
+                    
+                </h:form>-->
         <h:outputText rendered="#{empty controladorLivro.autores}" value="Adicione um autor para poder cadastrar um livro"/>
     </h:body>
 </html>

@@ -21,7 +21,17 @@ public class ControladorLivro implements Serializable {
     private final ServicoAutorLivro servicoAutorLivro = new ServicoAutorLivro();
     private List<Autor> autoresAuxiliar = servicoAutor.todosAutores();
     private List<Autor> autoresSelecionados = new ArrayList<>();
-    boolean mostrarTodosAutores = true;
+    private List<Livro> todosLivros = new ArrayList<>();
+    private boolean mostrarTodosAutores = true;
+    private boolean autorCadastrado = false;
+
+    public boolean isAutorCadastrado() {
+        return autorCadastrado;
+    }
+
+    public void setAutorCadastrado(boolean autorCadastrado) {
+        this.autorCadastrado = autorCadastrado;
+    }
 
     public boolean isMostrarTodosAutores() {
         return mostrarTodosAutores;
@@ -35,23 +45,32 @@ public class ControladorLivro implements Serializable {
         return livro;
     }
 
-    public void setLivro(Livro livro) {
-        this.livro = livro;
+//    public void setLivro(Livro livro) {
+//        this.livro = livro;
+//    }
+
+    public List<Livro> getTodosLivros() {
+        return this.servicoLivro.listarTodosLivros();
     }
+
+//    public void setTodosLivros(List<Livro> todosLivros) {
+//        this.todosLivros = todosLivros;
+//    }
 
     public List<Autor> getAutoresAuxiliar() {
         return autoresAuxiliar;
     }
 
-    public void setAutoresAuxiliar(List<Autor> autoresAuxiliar) {
-        this.autoresAuxiliar = autoresAuxiliar;
-    }
+//    public void setAutoresAuxiliar(List<Autor> autoresAuxiliar) {
+//        this.autoresAuxiliar = autoresAuxiliar;
+//    }
 
     public List<Autor> getAutores() {
         return servicoAutor.todosAutores();
     }
 
     public String adicionarAutor(Autor autor) {
+        this.autorCadastrado = true;
         this.autoresSelecionados.add(autor);
         this.autoresAuxiliar.remove(autor);
         return null;
@@ -63,14 +82,20 @@ public class ControladorLivro implements Serializable {
             servicoAutorLivro.adicionar(livro, auxiliar);
         }
         livro = new Livro();
-        autoresSelecionados = new ArrayList<>();
-        autoresAuxiliar = servicoAutor.todosAutores();
-        mostrarTodosAutores = true;
+        this.autoresSelecionados = new ArrayList<>();
+        this.autoresAuxiliar = servicoAutor.todosAutores();
+        this.mostrarTodosAutores = true;
+        this.autorCadastrado = false;
         return null;
     }
     
     public String mostrarAutores(){
         this.mostrarTodosAutores = false;
+        return null;
+    }
+    
+    public String removerLivro(Livro livro){
+        this.servicoLivro.remover(livro);
         return null;
     }
 

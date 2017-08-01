@@ -39,6 +39,7 @@ public class LivroDAO implements Dao<Livro>{
     @Override
     public boolean remover(Livro l) {
         try {
+            this.con = ConFactory.getConnection();
             String sql = "DELETE FROM livro WHERE isbn = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, l.getISBN());
