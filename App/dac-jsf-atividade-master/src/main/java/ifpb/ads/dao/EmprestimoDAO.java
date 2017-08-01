@@ -43,9 +43,10 @@ public class EmprestimoDAO implements Dao<Emprestimo>{
     public boolean remover(Emprestimo e) {
         try {
             this.con = ConFactory.getConnection();
-            String sql = "DELETE FROM emprestimo WHERE isbn = ?";
+            String sql = "DELETE FROM emprestimo WHERE isbn = ? AND nomeCliente = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, e.getLivro().getISBN());
+            stmt.setString(2, e.getNomeDoCliente());
             int n = stmt.executeUpdate();
             stmt.close();
             this.con.close();
@@ -59,12 +60,12 @@ public class EmprestimoDAO implements Dao<Emprestimo>{
     public boolean atualizar(Emprestimo e) {
         try {
             this.con = ConFactory.getConnection();
-            String sql = "UPDATE emprestimo SET nomeCliente = ?, data = ?, situacao = ? WHERE isbn = ?";
+            String sql = "UPDATE emprestimo SET data = ?, situacao = ? WHERE isbn = ? AND nomeCliente = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, e.getNomeDoCliente());
-            stmt.setDate(2, Date.valueOf(e.getDataDoEmprestimo()));
-            stmt.setString(3, e.getSituacao().name());
-            stmt.setString(4, e.getLivro().getISBN());
+            stmt.setDate(1, Date.valueOf(e.getDataDoEmprestimo()));
+            stmt.setString(2, e.getSituacao().name());
+            stmt.setString(3, e.getLivro().getISBN());
+            stmt.setString(4, e.getNomeDoCliente());
             int n = stmt.executeUpdate();
             stmt.close();
             this.con.close();

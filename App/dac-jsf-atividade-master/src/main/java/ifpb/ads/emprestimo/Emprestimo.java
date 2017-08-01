@@ -50,5 +50,10 @@ public class Emprestimo {
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
+
+    @Override
+    public String toString() {
+        return "Emprestimo{" + "dataDoEmprestimo=" + dataDoEmprestimo + ", nomeDoCliente=" + nomeDoCliente + ", situacao=" + situacao + ", livro=" + livro + '}';
+    }
     
 }

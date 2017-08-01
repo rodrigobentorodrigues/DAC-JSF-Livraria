@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Emprestimo/Devolucao</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form id="selecao">
+            <h:commandButton immediate="true" value="Emprestimo" action="#{controladorEmprestimo.visualizarEmprestimo()}"/>
+            <h:commandButton immediate="true" value="Devolucao" action="#{controladorEmprestimo.visualizarDevolucao()}"/>            
+
+            <h:form rendered="#{not controladorEmprestimo.realizarDevolucao}" id="emprestimo">
+                <h1><b>Realizar emprestimo</b></h1>
+                <h:outputText value="Nome"/>
+                <h:inputText value="#{controladorEmprestimo.emprestimo.nomeDoCliente}"
+                             required="true"
+                             requiredMessage="Necessario informar o nome"/>
+                <br></br>
+                <h:outputText value="ISBN"/>
+                <h:inputText value="#{controladorEmprestimo.livro.ISBN}"
+                             required="true"
+                             requiredMessage="Necessario informar o isbn"/>
+                <br></br>
+                <h:commandButton value="Realizar emprestimo" 
+                                 action="#{controladorEmprestimo.cadastrarEmprestimo()}"/>
+            </h:form>
+            <h:form rendered="#{controladorEmprestimo.realizarDevolucao}" id="devolucao">
+                <h1><b>Realizar devolução</b></h1>
+                <h:outputText value="Nome"/>
+                <h:inputText value="#{controladorEmprestimo.emprestimoDevolucao.nomeDoCliente}"
+                             required="true"
+                             requiredMessage="Necessario informar o nome para a devolucao"/>
+                <br></br>
+                <h:outputText value="ISBN"/>
+                <h:inputText value="#{controladorEmprestimo.livroDevolucao.ISBN}"
+                             required="true"
+                             requiredMessage="Necessario informar o isbn para a devolucao"/>
+                <br></br>
+                <h:commandButton value="Realizar devolucao" 
+                                 action="#{controladorEmprestimo.devolucao()}"/>
+                <br></br>
+            </h:form>
+        </h:form>
+    </h:body>
+</html>
