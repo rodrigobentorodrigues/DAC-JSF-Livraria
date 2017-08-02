@@ -5,12 +5,13 @@ import ifpb.ads.emprestimo.Emprestimo;
 import ifpb.ads.emprestimo.LivroSituacao;
 import ifpb.ads.livro.Livro;
 import ifpb.ads.servicos.ServicoEmprestimo;
+import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class ControladorEmprestimo {
+public class ControladorEmprestimo implements Serializable {
     
     private Emprestimo emprestimo = new Emprestimo();
     private Emprestimo emprestimoDevolucao = new Emprestimo();

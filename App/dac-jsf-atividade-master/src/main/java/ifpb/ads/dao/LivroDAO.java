@@ -25,7 +25,7 @@ public class LivroDAO implements Dao<Livro>{
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, l.getISBN());
             stmt.setString(2, l.getDescricao());
-            stmt.setString(3, l.getEdicao());
+            stmt.setInt(3, l.getEdicao());
             int n = stmt.executeUpdate();
             stmt.close();
             this.con.close();
@@ -61,7 +61,7 @@ public class LivroDAO implements Dao<Livro>{
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, l.getISBN());
             stmt.setString(2, l.getDescricao());
-            stmt.setString(3, l.getEdicao());
+            stmt.setInt(3, l.getEdicao());
             stmt.setString(4, l.getISBN());
             int n = stmt.executeUpdate();
             stmt.close();
@@ -85,7 +85,7 @@ public class LivroDAO implements Dao<Livro>{
                 Livro l = new Livro();
                 l.setISBN(rs.getString("isbn"));
                 l.setDescricao(rs.getString("descricao"));
-                l.setEdicao(rs.getString("edicao"));
+                l.setEdicao(rs.getInt("edicao"));
                 auxiliar.add(l);
             }
             stmt.close();

@@ -10,7 +10,7 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class ControladorAutor implements Serializable{
+public class ControladorAutor implements Serializable {
     
     private Autor a = new Autor();
     private ServicoAutor servico = new ServicoAutor();

@@ -8,6 +8,9 @@ public class CPF {
         this.valor = valor;
     }
 
+    public CPF() {
+    }
+
     public String getValor() {
         return valor;
     }
@@ -15,20 +18,21 @@ public class CPF {
     public String formatado() {
         String cpf = valor;
 
-        if (naoNulo(cpf)) {
-            cpf = formatarCPF(cpf);
+        if (cpf != null && cpf.length() == 11) {
+            cpf = cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
         }
         return cpf;
     }
+    
+    public String getValorFormatado(){
+        String cpf = valor;
 
-    private String formatarCPF(String cpf) {
-        return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
+        if (cpf != null && cpf.length() == 11) {
+            cpf = cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
+        }
+        return cpf;
     }
-
-    private boolean naoNulo(String cpf) {
-        return cpf != null && cpf.length() == 11;
-    }
-
+    
     public boolean isValid(){
         return this.valor.length()==11;
     }

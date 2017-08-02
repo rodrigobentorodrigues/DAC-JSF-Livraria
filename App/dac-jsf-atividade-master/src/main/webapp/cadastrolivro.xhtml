@@ -73,16 +73,18 @@
                     <h:outputText value="#{livro.descricao}"/>
                 </h:column>
                 <h:column>
+                    <f:facet name="header"><b>Edicao</b></f:facet>
+                    <h:outputText value="#{livro.edicao}"/>
+                </h:column>
+                <h:column>
                     <f:facet name="header"><b>Excluir</b></f:facet>
                     <h:commandButton immediate="true"
                                      value="Excluir livro" 
                                      action="#{controladorLivro.removerLivro(livro)}"/>
                 </h:column>
             </h:dataTable>
+            <h:link outcome="emprestimo.xhtml" value="Ir para tela de emprestimos" />
         </h:form>
-        <!--        <h:form id="livros">
-                    
-                </h:form>-->
         <h:outputText rendered="#{empty controladorLivro.autores}" value="Adicione um autor para poder cadastrar um livro"/>
     </h:body>
 </html>

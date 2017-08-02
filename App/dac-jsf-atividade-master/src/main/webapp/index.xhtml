@@ -22,8 +22,10 @@
                           rendered="#{not controladorAutor.editar}"/>            
             <h:inputText value="#{controladorAutor.a.cpf}" 
                          converter="conversorCPF"
+                         validator="validadorCPF"
                          required="true"
                          requiredMessage="Voce deve informar seu CPF"
+                         maxlength="11"
                          rendered="#{not controladorAutor.editar}"/>
             <br></br>
             <h:commandButton value="Salvar" 
@@ -47,7 +49,7 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header"><b>CPF</b></f:facet>
-                    <h:outputText value="#{autor.cpf.valor}"/>
+                    <h:outputText value="#{autor.cpf.valorFormatado}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header"><b>Excluir</b></f:facet>
@@ -66,6 +68,7 @@
         </h:form>
         <br />
         <h:link outcome="cadastrolivro.xhtml" value="Ir para cadastro de livros" />
+        <h:messages layout="table" class="erro"/>
     </h:body>
 </html>
 

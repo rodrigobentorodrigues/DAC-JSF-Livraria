@@ -48,7 +48,6 @@ public class ControladorLivro implements Serializable {
 //    public void setLivro(Livro livro) {
 //        this.livro = livro;
 //    }
-
     public List<Livro> getTodosLivros() {
         return this.servicoLivro.listarTodosLivros();
     }
@@ -56,7 +55,6 @@ public class ControladorLivro implements Serializable {
 //    public void setTodosLivros(List<Livro> todosLivros) {
 //        this.todosLivros = todosLivros;
 //    }
-
     public List<Autor> getAutoresAuxiliar() {
         return autoresAuxiliar;
     }
@@ -64,7 +62,6 @@ public class ControladorLivro implements Serializable {
 //    public void setAutoresAuxiliar(List<Autor> autoresAuxiliar) {
 //        this.autoresAuxiliar = autoresAuxiliar;
 //    }
-
     public List<Autor> getAutores() {
         return servicoAutor.todosAutores();
     }
@@ -77,9 +74,10 @@ public class ControladorLivro implements Serializable {
     }
 
     public String cadastrarLivro() {
-        servicoLivro.adicionar(livro);
-        for (Autor auxiliar : autoresSelecionados) {
-            servicoAutorLivro.adicionar(livro, auxiliar);
+        if (servicoLivro.adicionar(livro)) {
+            for (Autor auxiliar : autoresSelecionados) {
+                servicoAutorLivro.adicionar(livro, auxiliar);
+            }
         }
         livro = new Livro();
         this.autoresSelecionados = new ArrayList<>();
@@ -88,13 +86,13 @@ public class ControladorLivro implements Serializable {
         this.autorCadastrado = false;
         return null;
     }
-    
-    public String mostrarAutores(){
+
+    public String mostrarAutores() {
         this.mostrarTodosAutores = false;
         return null;
     }
-    
-    public String removerLivro(Livro livro){
+
+    public String removerLivro(Livro livro) {
         this.servicoLivro.remover(livro);
         return null;
     }

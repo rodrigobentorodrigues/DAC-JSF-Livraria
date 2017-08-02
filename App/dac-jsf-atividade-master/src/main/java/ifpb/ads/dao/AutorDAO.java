@@ -59,7 +59,6 @@ public class AutorDAO implements Dao<Autor>{
         try {
             this.con = ConFactory.getConnection();
             String sql = "UPDATE autor SET nome = ?, email = ? WHERE cpf = ?";
-            System.out.println(sql);
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, a.getNome());
             stmt.setString(2, a.getEmail());

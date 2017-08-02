@@ -1,11 +1,13 @@
 package ifpb.ads.autor;
 
-public class Autor {
+import java.io.Serializable;
+
+public class Autor implements Serializable {
 
     private String nome;
     private String email;
-    private CPF cpf;
-
+    private CPF cpf = new CPF();
+    
     public Autor() {
     }
 

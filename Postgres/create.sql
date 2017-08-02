@@ -7,7 +7,7 @@ CREATE TABLE autor (
 CREATE TABLE livro (
 	isbn varchar(20) primary key,
 	descricao varchar(50) not null,
-	edicao varchar(30) not null	 
+	edicao int not null	 
 );
 
 CREATE TABLE livroAutor(

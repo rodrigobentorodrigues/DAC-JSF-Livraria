@@ -8,7 +8,7 @@ public class Livro {
 
     private String descricao;
     private String ISBN;
-    private String edicao;
+    private int edicao;
     private List<Autor> autores;
 
     public Livro() {
@@ -31,11 +31,11 @@ public class Livro {
         this.ISBN = ISBN;
     }
 
-    public String getEdicao() {
+    public int getEdicao() {
         return edicao;
     }
 
-    public void setEdicao(String edicao) {
+    public void setEdicao(int edicao) {
         this.edicao = edicao;
     }
 
