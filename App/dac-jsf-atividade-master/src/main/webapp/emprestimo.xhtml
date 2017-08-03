@@ -9,9 +9,11 @@
     <ui:composition template="/template.xhtml">
         <ui:define name="center">
             <h:form id="selecao">
-               <h:commandButton immediate="true" value="Emprestimo" action="#{controladorEmprestimo.visualizarEmprestimo()}"/>
-               <h:commandButton immediate="true" value="Devolucao" action="#{controladorEmprestimo.visualizarDevolucao()}"/>            
-
+                <div class="row">
+                    <h:commandButton class="waves-effect waves-light btn cyan darken-1 col l6" immediate="true" value="Emprestimo" action="#{controladorEmprestimo.visualizarEmprestimo()}"/>
+                    <h:commandButton class="waves-effect waves-light btn cyan darken-1 col l6" immediate="true" value="Devolucao" action="#{controladorEmprestimo.visualizarDevolucao()}"/>             
+                </div>
+               
                <h:form rendered="#{not controladorEmprestimo.realizarDevolucao}" id="emprestimo">
                    <h1><b>Realizar emprestimo</b></h1>
                    <h:outputText value="Nome"/>
@@ -24,8 +26,12 @@
                                 required="true"
                                 requiredMessage="Necessario informar o isbn"/>
                    <br></br>
-                   <h:commandButton value="Realizar emprestimo" 
-                                    action="#{controladorEmprestimo.cadastrarEmprestimo()}"/>
+                   <div class="row">
+                      <h:commandButton value="Realizar emprestimo"
+                                    class="waves-effect waves-light btn cyan darken-1 col l12"
+                                    action="#{controladorEmprestimo.cadastrarEmprestimo()}"/> 
+                   </div>
+                   
                </h:form>
                <h:form rendered="#{controladorEmprestimo.realizarDevolucao}" id="devolucao">
                    <h1><b>Realizar devolução</b></h1>
@@ -39,8 +45,12 @@
                                 required="true"
                                 requiredMessage="Necessario informar o isbn para a devolucao"/>
                    <br></br>
-                   <h:commandButton value="Realizar devolucao" 
+                   <div class="row">
+                       <h:commandButton value="Realizar devolucao"
+                                    class="waves-effect waves-light btn cyan darken-1 col l12"    
                                     action="#{controladorEmprestimo.devolucao()}"/>
+                   </div>
+                   
                    <br></br>
                </h:form>
            </h:form>
