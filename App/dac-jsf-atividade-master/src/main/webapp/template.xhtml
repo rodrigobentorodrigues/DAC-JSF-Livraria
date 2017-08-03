@@ -11,11 +11,13 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css" />
+        
+        <link rel="stylesheet" href="css/main.css" />
     </h:head>
     <h:body>
-        <nav>
+        <nav class="indigo darken-1">
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">CRUD de Livro</a>
+          <a href="#" class="brand-logo">CRUD de Livros</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
                 <h:link outcome="index.xhtml" value="Autores" />
@@ -30,9 +32,12 @@
         </div>
       </nav>
         
-        <ui:insert name="center">
+        <div class="content">
+            <ui:insert name="center">
             
-        </ui:insert>
+            </ui:insert>
+        </div>
+        
         
     </h:body>
     <!--Import jQuery before materialize.js-->

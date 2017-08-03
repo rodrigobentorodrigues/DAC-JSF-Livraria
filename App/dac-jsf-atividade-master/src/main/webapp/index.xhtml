@@ -8,6 +8,10 @@
     <ui:composition template="/template.xhtml">
         <ui:define name="center">
             
+                <h:messages layout="table" class="erro"/>
+            
+            
+            
             <h:form>
             <h:outputText value="Nome"/>
             <h:inputText value="#{controladorAutor.a.nome}"
@@ -29,12 +33,23 @@
                          maxlength="11"
                          rendered="#{not controladorAutor.editar}"/>
             <br></br>
-            <h:commandButton value="Salvar" 
-                             action="#{controladorAutor.adicionarAutor()}"
-                             rendered="#{not controladorAutor.editar}"/>
-            <h:commandButton value="Atualizar" 
-                             action="#{controladorAutor.atualizarAutor()}" 
-                             rendered="#{controladorAutor.editar}"/>
+            <div class="row">
+                <h:commandButton value="Salvar" 
+                             class="waves-effect waves-light btn cyan darken-1 col l12"
+                                 action="#{controladorAutor.adicionarAutor()}"
+                             rendered="#{not controladorAutor.editar}"
+                             />
+            </div>
+            
+            
+            <div class="row">
+                <h:commandButton value="Atualizar" 
+                             class="waves-effect waves-light btn cyan darken-1 col l12"
+                                 action="#{controladorAutor.atualizarAutor()}" 
+                             rendered="#{controladorAutor.editar}"
+                              />
+            </div>
+            
 
         </h:form>
         <h:form>
@@ -55,21 +70,23 @@
                 <h:column>
                     <f:facet name="header"><b>Excluir</b></f:facet>
                     <h:commandButton value="Excluir" 
-                                     action="#{controladorAutor.removerAutor(autor)}"/> 
+                                     action="#{controladorAutor.removerAutor(autor)}"
+                                     class="waves-effect waves-light btn cyan darken-1"/> 
                 </h:column>
                 <h:column>
                     <f:facet name="header"><b>Editar</b></f:facet>
                     <h:commandButton value="Editar" 
                                      rendered="#{not controladorAutor.editar}"
-                                     action="#{controladorAutor.editarAutor(autor)}"/> 
+                                     action="#{controladorAutor.editarAutor(autor)}"
+                                     class="waves-effect waves-light btn cyan darken-1"/> 
                 </h:column>
 
             </h:dataTable>
 
             </h:form>
             <br />
-            <h:link outcome="cadastrolivro.xhtml" value="Ir para cadastro de livros" />
-            <h:messages layout="table" class="erro"/>
+            <!--<h:link outcome="cadastrolivro.xhtml" value="Ir para cadastro de livros" />-->
+            
             
         </ui:define>
     </ui:composition>
