@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>CRUD de Livros</title>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!--Import Google Icon Font-->
@@ -13,6 +13,22 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css" />
     </h:head>
     <h:body>
+        <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">CRUD de Livro</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+                <h:link outcome="index.xhtml" value="Autores" />
+            </li>
+            <li>
+                <h:link outcome="cadastrolivro.xhtml" value="Livros" />
+            </li>
+            <li>
+                <h:link outcome="emprestimo.xhtml" value="Emprestimo/Devolução" />
+            </li>
+          </ul>
+        </div>
+      </nav>
         
         <ui:insert name="center">
             

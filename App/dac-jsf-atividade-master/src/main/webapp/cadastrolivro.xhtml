@@ -3,89 +3,91 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>CRUD de livro</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
-    <h:body>
-        <h:form rendered="#{not empty controladorLivro.autores}" id="cadastro">
-            <h1>Cadastro de livro</h1>
-            <h:outputText value="ISBN"/>
-            <h:inputText value="#{controladorLivro.livro.ISBN}" 
-                         required="true"
-                         requiredMessage="Necessário informar o ISBN" />
-            <br></br>
-            <h:outputText value="Descrição"/>
-            <h:inputText value="#{controladorLivro.livro.descricao}" 
-                         required="true"
-                         requiredMessage="Necessário informar a descrição" />
-            <br></br>
-            <h:outputText value="Editora"/>
-            <h:inputText value="#{controladorLivro.livro.edicao}" 
-                         required="true"
-                         requiredMessage="Necessário informar a editora do livro" />
-            <br></br>
-            <h:commandButton value="Adicionar autores" 
-                             immediate="true"
-                             rendered="#{controladorLivro.mostrarTodosAutores}"
-                             action="#{controladorLivro.mostrarAutores()}"/>
-            <br></br>
-            <h:outputText value="Autores"/>
-            <h:dataTable value="#{controladorLivro.autores}" var="a" 
-                         rendered="#{controladorLivro.mostrarTodosAutores}">
-                <h:column>
-                    <h:outputText value="#{a.nome}"/>
-                </h:column>
-            </h:dataTable>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="center">
+            
+            <h:form rendered="#{not empty controladorLivro.autores}" id="cadastro">
+                <h1>Cadastro de livro</h1>
+                <h:outputText value="ISBN"/>
+                <h:inputText value="#{controladorLivro.livro.ISBN}" 
+                             required="true"
+                             requiredMessage="Necessário informar o ISBN" />
+                <br></br>
+                <h:outputText value="Descrição"/>
+                <h:inputText value="#{controladorLivro.livro.descricao}" 
+                             required="true"
+                             requiredMessage="Necessário informar a descrição" />
+                <br></br>
+                <h:outputText value="Editora"/>
+                <h:inputText value="#{controladorLivro.livro.edicao}" 
+                             required="true"
+                             requiredMessage="Necessário informar a editora do livro" />
+                <br></br>
+                <h:commandButton value="Adicionar autores" 
+                                 immediate="true"
+                                 rendered="#{controladorLivro.mostrarTodosAutores}"
+                                 action="#{controladorLivro.mostrarAutores()}"/>
+                <br></br>
+                <h:outputText value="Autores"/>
+                <h:dataTable value="#{controladorLivro.autores}" var="a" 
+                             rendered="#{controladorLivro.mostrarTodosAutores}">
+                    <h:column>
+                        <h:outputText value="#{a.nome}"/>
+                    </h:column>
+                </h:dataTable>
 
-            <h:dataTable value="#{controladorLivro.autoresAuxiliar}" 
-                         rendered="#{not controladorLivro.mostrarTodosAutores}"
-                         var="a">
-                <h:column>
-                    <h:outputText value="#{a.nome}"/>
-                </h:column>
-                <h:column>
-                    <h:commandButton value="Salvar" 
-                                     immediate="true"
-                                     action="#{controladorLivro.adicionarAutor(a)}">
-                        <!--<f:ajax render="@dataTable :tabela" />-->
-                    </h:commandButton>
-                </h:column>            
-            </h:dataTable>
+                <h:dataTable value="#{controladorLivro.autoresAuxiliar}" 
+                             rendered="#{not controladorLivro.mostrarTodosAutores}"
+                             var="a">
+                    <h:column>
+                        <h:outputText value="#{a.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="Salvar" 
+                                         immediate="true"
+                                         action="#{controladorLivro.adicionarAutor(a)}">
+                            <!--<f:ajax render="@dataTable :tabela" />-->
+                        </h:commandButton>
+                    </h:column>            
+                </h:dataTable>
 
-            <h:commandButton value="Cadastrar livro" 
-                             rendered="#{controladorLivro.autorCadastrado}"
-                             action="#{controladorLivro.cadastrarLivro()}"/>
+                <h:commandButton value="Cadastrar livro" 
+                                 rendered="#{controladorLivro.autorCadastrado}"
+                                 action="#{controladorLivro.cadastrarLivro()}"/>
 
-            <hr></hr>
-            <br></br>
+                <hr></hr>
+                <br></br>
 
-            <h:dataTable value="#{controladorLivro.todosLivros}"
-                         var="livro">
-                
-                <h:column>
-                    <f:facet name="header"><b>ISBN</b></f:facet>
-                    <h:outputText value="#{livro.ISBN}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"><b>Descricao</b></f:facet>
-                    <h:outputText value="#{livro.descricao}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"><b>Edicao</b></f:facet>
-                    <h:outputText value="#{livro.edicao}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"><b>Excluir</b></f:facet>
-                    <h:commandButton immediate="true"
-                                     value="Excluir livro" 
-                                     action="#{controladorLivro.removerLivro(livro)}"/>
-                </h:column>
-            </h:dataTable>
-            <h:link outcome="emprestimo.xhtml" value="Ir para tela de emprestimos" />
-        </h:form>
-        <h:outputText rendered="#{empty controladorLivro.autores}" value="Adicione um autor para poder cadastrar um livro"/>
-    </h:body>
+                <h:dataTable value="#{controladorLivro.todosLivros}"
+                             var="livro">
+
+                    <h:column>
+                        <f:facet name="header"><b>ISBN</b></f:facet>
+                        <h:outputText value="#{livro.ISBN}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><b>Descricao</b></f:facet>
+                        <h:outputText value="#{livro.descricao}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><b>Edicao</b></f:facet>
+                        <h:outputText value="#{livro.edicao}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><b>Excluir</b></f:facet>
+                        <h:commandButton immediate="true"
+                                         value="Excluir livro" 
+                                         action="#{controladorLivro.removerLivro(livro)}"/>
+                    </h:column>
+                </h:dataTable>
+                <h:link outcome="emprestimo.xhtml" value="Ir para tela de emprestimos" />
+            </h:form>
+            <h:outputText rendered="#{empty controladorLivro.autores}" value="Adicione um autor para poder cadastrar um livro"/>
+            
+            
+        </ui:define>
+    </ui:composition>
 </html>
-
