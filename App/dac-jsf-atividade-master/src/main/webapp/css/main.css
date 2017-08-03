@@ -16,7 +16,15 @@ nav {
     padding: 40px 60px 0 60px;
 }
 
-message-error {
+.message-error {
     margin-bottom: 20px;
     color: white;
+}
+
+.btn-add-autor {
+    margin-bottom: 20px;
+}
+
+.title-autores {
+    font-size: 30px;
 }
