@@ -3,6 +3,9 @@
 
 Infos sobre a atividade:
 
+Alunos: Rodrigo Bento
+	Natan Severo
+
 * CRUD de Autor
 * CRUD de Livro
 * Empréstimo

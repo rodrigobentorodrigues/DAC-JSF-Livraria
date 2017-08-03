@@ -57,12 +57,11 @@ public class LivroDAO implements Dao<Livro>{
     public boolean atualizar(Livro l) {
         try {
             this.con = ConFactory.getConnection();
-            String sql = "UPDATE livro SET isbn = ?, descricao = ?, edicao = ? WHERE isbn = ?";
+            String sql = "UPDATE livro SET descricao = ?, edicao = ? WHERE isbn = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, l.getISBN());
-            stmt.setString(2, l.getDescricao());
-            stmt.setInt(3, l.getEdicao());
-            stmt.setString(4, l.getISBN());
+            stmt.setString(1, l.getDescricao());
+            stmt.setInt(2, l.getEdicao());
+            stmt.setString(3, l.getISBN());
             int n = stmt.executeUpdate();
             stmt.close();
             this.con.close();

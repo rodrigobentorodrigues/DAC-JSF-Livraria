@@ -1,12 +1,12 @@
 CREATE TABLE autor (
 	cpf varchar(20) primary key,
-	nome varchar(40) not null,
+	nome varchar(30) not null,
 	email varchar(30) not null
 );
 
 CREATE TABLE livro (
 	isbn varchar(20) primary key,
-	descricao varchar(50) not null,
+	descricao varchar(30) not null,
 	edicao int not null	 
 );
 

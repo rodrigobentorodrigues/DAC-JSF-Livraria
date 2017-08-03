@@ -7,87 +7,90 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <ui:composition template="/template.xhtml">
         <ui:define name="center">
-            
-                <h:messages layout="table" class="erro"/>
-            
-            
-            
+
+            <h:messages layout="table" class="erro"/>
+
             <h:form>
-            <h:outputText value="Nome"/>
-            <h:inputText value="#{controladorAutor.a.nome}"
-                         required="true"
-                         requiredMessage="Voce deve informar seu nome"/>
-            <br></br>
-            <h:outputText value="Email"/>
-            <h:inputText value="#{controladorAutor.a.email}"
-                         required="true"
-                         requiredMessage="Voce deve informar seu email"/>
-            <br></br>
-            <h:outputText value="CPF"
-                          rendered="#{not controladorAutor.editar}"/>            
-            <h:inputText value="#{controladorAutor.a.cpf}" 
-                         converter="conversorCPF"
-                         validator="validadorCPF"
-                         required="true"
-                         requiredMessage="Voce deve informar seu CPF"
-                         maxlength="11"
-                         rendered="#{not controladorAutor.editar}"/>
-            <br></br>
-            <div class="row right-align">
-                <h:commandButton value="Salvar" 
-                             class="waves-effect waves-light btn cyan darken-1"
-                                 action="#{controladorAutor.adicionarAutor()}"
-                             rendered="#{not controladorAutor.editar}"
-                             />
-            </div>
-            
-            
-            <div class="row right-align">
-                <h:commandButton value="Atualizar" 
-                             class="waves-effect waves-light btn cyan darken-1"
-                                 action="#{controladorAutor.atualizarAutor()}" 
-                             rendered="#{controladorAutor.editar}"
-                              />
-            </div>
-            
-
-        </h:form>
-        <h:form>
-            <h:dataTable value="#{controladorAutor.autores}" var="autor">
-
-                <h:column>
-                    <f:facet name="header"><b>Nome</b></f:facet>
-                    <h:outputText value="#{autor.nome}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"><b>Email</b></f:facet>
-                    <h:outputText value="#{autor.email}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"><b>CPF</b></f:facet>
-                    <h:outputText value="#{autor.cpf.valorFormatado}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"><b>Excluir</b></f:facet>
-                    <h:commandButton value="Excluir" 
-                                     action="#{controladorAutor.removerAutor(autor)}"
-                                     class="waves-effect waves-light btn cyan darken-1"/> 
-                </h:column>
-                <h:column>
-                    <f:facet name="header"><b>Editar</b></f:facet>
-                    <h:commandButton value="Editar" 
+                <h:outputText class="title-autores" 
+                              rendered="#{controladorAutor.editar}"
+                              value="Informe os novos dados"/>
+                <br></br><br></br>
+                <h:outputText value="Nome"/>
+                <h:inputText value="#{controladorAutor.a.nome}"
+                             required="true"
+                             maxlength="30"
+                             requiredMessage="Voce deve informar seu nome"/>
+                <br></br>
+                <h:outputText value="Email"/>
+                <h:inputText value="#{controladorAutor.a.email}"
+                             required="true"
+                             maxlength="30"
+                             requiredMessage="Voce deve informar seu email"/>
+                <br></br>
+                <h:outputText value="CPF"
+                              rendered="#{not controladorAutor.editar}"/>            
+                <h:inputText value="#{controladorAutor.a.cpf}" 
+                             converter="conversorCPF"
+                             validator="validadorCPF"
+                             required="true"
+                             requiredMessage="Voce deve informar seu CPF"
+                             maxlength="11"
+                             rendered="#{not controladorAutor.editar}"/>
+                <br></br>
+                <div class="row right-align">
+                    <h:commandButton value="Salvar" 
+                                     class="waves-effect waves-light btn cyan darken-1"
+                                     action="#{controladorAutor.adicionarAutor()}"
                                      rendered="#{not controladorAutor.editar}"
-                                     action="#{controladorAutor.editarAutor(autor)}"
-                                     class="waves-effect waves-light btn cyan darken-1"/> 
-                </h:column>
+                                     />
+                </div>
 
-            </h:dataTable>
+
+                <div class="row right-align">
+                    <h:commandButton value="Atualizar" 
+                                     class="waves-effect waves-light btn cyan darken-1"
+                                     action="#{controladorAutor.atualizarAutor()}" 
+                                     rendered="#{controladorAutor.editar}"
+                                     />
+                </div>
+
+
+            </h:form>
+            <h:form>
+                <h:dataTable value="#{controladorAutor.autores}" var="autor">
+
+                    <h:column>
+                        <f:facet name="header"><b>Nome</b></f:facet>
+                        <h:outputText value="#{autor.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><b>Email</b></f:facet>
+                        <h:outputText value="#{autor.email}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><b>CPF</b></f:facet>
+                        <h:outputText value="#{autor.cpf.valorFormatado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><b>Excluir</b></f:facet>
+                        <h:commandButton value="Excluir" 
+                                         action="#{controladorAutor.removerAutor(autor)}"
+                                         rendered="#{not controladorAutor.editar}"
+                                         class="waves-effect waves-light btn cyan darken-1"/> 
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><b>Editar</b></f:facet>
+                        <h:commandButton value="Editar" 
+                                         rendered="#{not controladorAutor.editar}"
+                                         action="#{controladorAutor.editarAutor(autor)}"
+                                         class="waves-effect waves-light btn cyan darken-1"/> 
+                    </h:column>
+
+                </h:dataTable>
 
             </h:form>
             <br />
-            <!--<h:link outcome="cadastrolivro.xhtml" value="Ir para cadastro de livros" />-->
-            
-            
+
         </ui:define>
     </ui:composition>
 </html>

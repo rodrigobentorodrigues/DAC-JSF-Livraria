@@ -21,9 +21,18 @@ public class ControladorLivro implements Serializable {
     private final ServicoAutorLivro servicoAutorLivro = new ServicoAutorLivro();
     private List<Autor> autoresAuxiliar = servicoAutor.todosAutores();
     private List<Autor> autoresSelecionados = new ArrayList<>();
-    private List<Livro> todosLivros = new ArrayList<>();
+//    private List<Livro> todosLivros = new ArrayList<>();
     private boolean mostrarTodosAutores = true;
     private boolean autorCadastrado = false;
+    private boolean editando = false;
+
+    public boolean isEditando() {
+        return editando;
+    }
+
+    public void setEditando(boolean editando) {
+        this.editando = editando;
+    }
 
     public boolean isAutorCadastrado() {
         return autorCadastrado;
@@ -45,23 +54,18 @@ public class ControladorLivro implements Serializable {
         return livro;
     }
 
-//    public void setLivro(Livro livro) {
-//        this.livro = livro;
-//    }
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
     public List<Livro> getTodosLivros() {
         return this.servicoLivro.listarTodosLivros();
     }
-
-//    public void setTodosLivros(List<Livro> todosLivros) {
-//        this.todosLivros = todosLivros;
-//    }
+    
     public List<Autor> getAutoresAuxiliar() {
         return autoresAuxiliar;
     }
 
-//    public void setAutoresAuxiliar(List<Autor> autoresAuxiliar) {
-//        this.autoresAuxiliar = autoresAuxiliar;
-//    }
     public List<Autor> getAutores() {
         return servicoAutor.todosAutores();
     }
@@ -89,11 +93,25 @@ public class ControladorLivro implements Serializable {
 
     public String mostrarAutores() {
         this.mostrarTodosAutores = false;
+        this.autoresAuxiliar = this.servicoAutor.todosAutores();
         return null;
     }
 
     public String removerLivro(Livro livro) {
         this.servicoLivro.remover(livro);
+        return null;
+    }
+    
+    public String editarLivro(Livro l){
+        this.livro = l;
+        this.editando = true;
+        return null;
+    }
+    
+    public String atualizarLivro(){               
+        this.servicoLivro.atualizar(livro);
+        this.livro = new Livro();
+        this.editando = false;
         return null;
     }
 
