@@ -28,7 +28,7 @@
                 <br></br>
                 <div>
                     <h:commandButton value="Adicionar autores" 
-                                 class="waves-effect waves-light btn btn-add-autor cyan darken-1 col l12"
+                                 class="waves-effect waves-light btn btn-add-autor cyan darken-1"
                                  immediate="true"
                                  rendered="#{controladorLivro.mostrarTodosAutores}"
                                  action="#{controladorLivro.mostrarAutores()}"/>
@@ -60,7 +60,7 @@
                 </h:dataTable>
 
                 <h:commandButton value="Cadastrar livro"
-                                 class="waves-effect waves-light btn btn-add-autor cyan darken-1 col s12"
+                                 class="waves-effect waves-light btn btn-add-autor cyan darken-1"
                                  rendered="#{controladorLivro.autorCadastrado}"
                                  action="#{controladorLivro.cadastrarLivro()}"/>
 
@@ -88,6 +88,12 @@
                                          class="waves-effect waves-light btn cyan darken-1"
                                          value="Excluir livro" 
                                          action="#{controladorLivro.removerLivro(livro)}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><b>Editar</b></f:facet>
+                        <h:commandButton immediate="true"
+                                         class="waves-effect waves-light btn cyan darken-1"
+                                         value="Editar livro" />
                     </h:column>
                 </h:dataTable>
                 <!--<h:link outcome="emprestimo.xhtml" value="Ir para tela de emprestimos" />-->

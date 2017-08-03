@@ -9,9 +9,9 @@
     <ui:composition template="/template.xhtml">
         <ui:define name="center">
             <h:form id="selecao">
-                <div class="row">
-                    <h:commandButton class="waves-effect waves-light btn cyan darken-1 col l6" immediate="true" value="Emprestimo" action="#{controladorEmprestimo.visualizarEmprestimo()}"/>
-                    <h:commandButton class="waves-effect waves-light btn cyan darken-1 col l6" immediate="true" value="Devolucao" action="#{controladorEmprestimo.visualizarDevolucao()}"/>             
+                <div class="row center-align">
+                    <h:commandButton class="waves-effect waves-light btn cyan darken-1" immediate="true" value="Emprestimo" action="#{controladorEmprestimo.visualizarEmprestimo()}"/>
+                    <h:commandButton class="waves-effect waves-light btn cyan darken-1" immediate="true" value="Devolucao" action="#{controladorEmprestimo.visualizarDevolucao()}"/>             
                 </div>
                
                <h:form rendered="#{not controladorEmprestimo.realizarDevolucao}" id="emprestimo">
@@ -26,9 +26,9 @@
                                 required="true"
                                 requiredMessage="Necessario informar o isbn"/>
                    <br></br>
-                   <div class="row">
+                   <div class="row right-align">
                       <h:commandButton value="Realizar emprestimo"
-                                    class="waves-effect waves-light btn cyan darken-1 col l12"
+                                    class="waves-effect waves-light btn cyan darken-1"
                                     action="#{controladorEmprestimo.cadastrarEmprestimo()}"/> 
                    </div>
                    
@@ -45,9 +45,9 @@
                                 required="true"
                                 requiredMessage="Necessario informar o isbn para a devolucao"/>
                    <br></br>
-                   <div class="row">
+                   <div class="row right-align">
                        <h:commandButton value="Realizar devolucao"
-                                    class="waves-effect waves-light btn cyan darken-1 col l12"    
+                                    class="waves-effect waves-light btn cyan darken-1"    
                                     action="#{controladorEmprestimo.devolucao()}"/>
                    </div>
                    

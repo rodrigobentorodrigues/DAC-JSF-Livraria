@@ -33,18 +33,18 @@
                          maxlength="11"
                          rendered="#{not controladorAutor.editar}"/>
             <br></br>
-            <div class="row">
+            <div class="row right-align">
                 <h:commandButton value="Salvar" 
-                             class="waves-effect waves-light btn cyan darken-1 col l12"
+                             class="waves-effect waves-light btn cyan darken-1"
                                  action="#{controladorAutor.adicionarAutor()}"
                              rendered="#{not controladorAutor.editar}"
                              />
             </div>
             
             
-            <div class="row">
+            <div class="row right-align">
                 <h:commandButton value="Atualizar" 
-                             class="waves-effect waves-light btn cyan darken-1 col l12"
+                             class="waves-effect waves-light btn cyan darken-1"
                                  action="#{controladorAutor.atualizarAutor()}" 
                              rendered="#{controladorAutor.editar}"
                               />
