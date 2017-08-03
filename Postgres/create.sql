@@ -19,7 +19,7 @@ CREATE TABLE livroAutor(
 );
 
 CREATE TABLE emprestimo (
-	nomeCliente varchar(40),
+	nomeCliente varchar(30),
 	data Date not null,
 	situacao varchar(15) not null,
 	isbn varchar(20) primary key,

@@ -27,3 +27,6 @@ sh run.sh
 ```
 5. Em seu browser favorito, acesse:
 [http://localhost:8081/AtividadeJSF](http://localhost:8081/AtividadeJSF/)
+
+Obs: Caso você deseje parar, remover o container e remover a imagem, execute:
+sh destroy.sh

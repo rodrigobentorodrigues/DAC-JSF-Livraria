@@ -19,12 +19,14 @@
                    <h:outputText value="Nome"/>
                    <h:inputText value="#{controladorEmprestimo.emprestimo.nomeDoCliente}"
                                 required="true"
-                                requiredMessage="Necessario informar o nome"/>
+                                requiredMessage="Necessario informar o nome"
+                                maxlength="30"/>
                    <br></br>
                    <h:outputText value="ISBN"/>
                    <h:inputText value="#{controladorEmprestimo.livro.ISBN}"
                                 required="true"
-                                requiredMessage="Necessario informar o isbn"/>
+                                requiredMessage="Necessario informar o isbn"
+                                maxlength="20"/>
                    <br></br>
                    <div class="row right-align">
                       <h:commandButton value="Realizar emprestimo"
